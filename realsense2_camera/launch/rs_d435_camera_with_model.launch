@@ -12,12 +12,12 @@
 
   <arg name="depth_width"         default="640"/>
   <arg name="depth_height"        default="480"/>
-  <arg name="enable_depth"        default="true"/>
+  <arg name="enable_depth"        default="false"/>
 
   <arg name="infra_width"        default="640"/>
   <arg name="infra_height"       default="480"/>
-  <arg name="enable_infra1"       default="true"/>
-  <arg name="enable_infra2"       default="true"/>
+  <arg name="enable_infra1"       default="false"/>
+  <arg name="enable_infra2"       default="false"/>
 
   <arg name="color_width"         default="640"/>
   <arg name="color_height"        default="480"/>
@@ -28,7 +28,9 @@
   <arg name="infra_fps"           default="30"/>
   <arg name="color_fps"           default="30"/>
   <arg name="gyro_fps"            default="400"/>
+  <!-- <arg name="gyro_fps"            default="200"/> -->
   <arg name="accel_fps"           default="250"/>
+  <!-- <arg name="accel_fps"           default="63"/> -->
   <arg name="enable_gyro"         default="true"/>
   <arg name="enable_accel"        default="true"/>
 
@@ -43,10 +45,11 @@
   <arg name="clip_distance"             default="-2"/>
   <arg name="linear_accel_cov"          default="0.01"/>
   <arg name="initial_reset"             default="false"/>
-  <arg name="unite_imu_method"          default=""/>
+  <arg name="unite_imu_method"          default="linear_interpolation"/>
+  <!-- <arg name="unite_imu_method"          default="copy"/> -->
   <arg name="topic_odom_in"             default="odom_in"/>
   <arg name="calib_odom_file"           default=""/>
-  <arg name="publish_odom_tf"           default="true"/>
+  <arg name="publish_odom_tf"           default="false"/>
   <arg name="allow_no_texture_points"   default="false"/>
 
   <group ns="$(arg camera)">
@@ -105,5 +108,5 @@
   <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find realsense2_description)/urdf/test_d435_camera.urdf.xacro' use_nominal_extrinsics:=false"/>
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find realsense2_description)/rviz/urdf.rviz" required="true"/>
+  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find realsense2_description)/rviz/urdf.rviz" required="true"/> -->
 </launch>
